@@ -167,7 +167,7 @@ define("@scom/page-breadcrumb", ["require", "exports", "@ijstech/components", "@
     };
     ScomPageBreadcrumb = __decorate([
         components_1.customModule,
-        (0, components_1.customElements)('i-scom-page-breadcrumb')
+        (0, components_1.customElements)('i-page-breadcrumb')
     ], ScomPageBreadcrumb);
     exports.default = ScomPageBreadcrumb;
 });

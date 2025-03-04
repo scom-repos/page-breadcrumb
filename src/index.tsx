@@ -1,7 +1,6 @@
 import {
   Module,
   customModule,
-  Styles,
   ControlElement,
   customElements,
   Container,
@@ -19,13 +18,13 @@ interface ScomPageBreadcrumbElement extends ControlElement {
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      ["i-scom-page-breadcrumb"]: ScomPageBreadcrumbElement;
+      ["i-page-breadcrumb"]: ScomPageBreadcrumbElement;
     }
   }
 }
 
 @customModule
-@customElements('i-scom-page-breadcrumb')
+@customElements('i-page-breadcrumb')
 export default class ScomPageBreadcrumb extends Module {
   private breadcrumb: Breadcrumb;
 

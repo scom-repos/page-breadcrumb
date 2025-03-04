@@ -73,7 +73,7 @@ declare module "@scom/page-breadcrumb" {
     global {
         namespace JSX {
             interface IntrinsicElements {
-                ["i-scom-page-breadcrumb"]: ScomPageBreadcrumbElement;
+                ["i-page-breadcrumb"]: ScomPageBreadcrumbElement;
             }
         }
     }
