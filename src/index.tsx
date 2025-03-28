@@ -24,7 +24,39 @@ declare global {
 }
 
 @customModule
-@customElements('i-page-breadcrumb')
+@customElements('i-page-breadcrumb', {
+  icon: 'stop',
+  props: {
+    data: {
+      type: 'array',
+      default: []
+    }
+  },
+  className: 'ScomPageBreadcrumb',
+  events: {},
+  dataSchema: {
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "caption": {
+              "type": "string"
+            },
+            "data": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "caption"
+          ]
+        }
+      }
+    }
+  }
+})
 export default class ScomPageBreadcrumb extends Module {
   private breadcrumb: Breadcrumb;
 
@@ -81,6 +113,8 @@ export default class ScomPageBreadcrumb extends Module {
       const data = this.getAttribute('data', true);
       data && this.setData({ data });
     }
+    const tag = this.getAttribute('tag', true);
+    tag && this.model.setTag(tag);
   }
 
   render() {
