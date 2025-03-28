@@ -159,6 +159,8 @@ define("@scom/page-breadcrumb", ["require", "exports", "@ijstech/components", "@
                 const data = this.getAttribute('data', true);
                 data && this.setData({ data });
             }
+            const tag = this.getAttribute('tag', true);
+            tag && this.model.setTag(tag);
         }
         render() {
             return (this.$render("i-panel", null,
@@ -167,7 +169,39 @@ define("@scom/page-breadcrumb", ["require", "exports", "@ijstech/components", "@
     };
     ScomPageBreadcrumb = __decorate([
         components_1.customModule,
-        (0, components_1.customElements)('i-page-breadcrumb')
+        (0, components_1.customElements)('i-page-breadcrumb', {
+            icon: 'stop',
+            props: {
+                data: {
+                    type: 'array',
+                    default: []
+                }
+            },
+            className: 'ScomPageBreadcrumb',
+            events: {},
+            dataSchema: {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "caption": {
+                                    "type": "string"
+                                },
+                                "data": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "caption"
+                            ]
+                        }
+                    }
+                }
+            }
+        })
     ], ScomPageBreadcrumb);
     exports.default = ScomPageBreadcrumb;
 });

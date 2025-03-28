@@ -35,7 +35,7 @@ declare module "@scom/page-breadcrumb/model/index.ts" {
         private getData;
         setData(data: IConfig): Promise<void>;
         private getTag;
-        private setTag;
+        setTag(value: ISettings): void;
         private updateTag;
         getConfigurators(): ({
             name: string;
