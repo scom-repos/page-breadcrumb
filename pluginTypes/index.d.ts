@@ -1,18 +1,17 @@
 /// <amd-module name="@scom/page-breadcrumb/interface.ts" />
 declare module "@scom/page-breadcrumb/interface.ts" {
-    import { IBreadcrumbItem } from "@ijstech/components";
+    import { IBreadcrumbItem, IFont } from "@ijstech/components";
     export interface IConfig {
         data: IBreadcrumbItem[];
     }
     export interface ISettings {
         light?: IColors;
         dark?: IColors;
-        fontSize?: string;
         gap?: string | number;
+        font?: IFont;
+        activeColor?: string;
     }
     export interface IColors {
-        color?: string;
-        activeColor?: string;
     }
 }
 /// <amd-module name="@scom/page-breadcrumb/model/index.ts" />
