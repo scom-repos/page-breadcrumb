@@ -89,15 +89,15 @@ export default class ScomPageBreadcrumb extends Module {
   }
 
   private onUpdateTheme() {
-    const themeVar = document.body.style.getPropertyValue('--theme') || 'dark';
-    this.updateStyle('--text-primary', this.model.tag[themeVar]?.color);
-    this.updateStyle('--colors-primary-main', this.model.tag[themeVar]?.activeColor);
-    this.updateStyle('--typography-font-size', this.model.tag?.fontSize);
+    // const themeVar = document.body.style.getPropertyValue('--theme') || 'dark';
+    this.updateStyle('--text-primary', this.model.tag?.font?.color);
+    this.updateStyle('--colors-primary-main', this.model.tag?.activeColor);
+    this.updateStyle('--typography-font_size', this.model.tag?.font?.size);
     this.breadcrumb.tag = {...this.model.tag};
   }
 
   private handleItemClick(item: IBreadcrumbItem) {
-    if (!item.data) return;
+    if (!item.data || this._designMode) return;
     window.open(item.data, '_self');
   }
 
