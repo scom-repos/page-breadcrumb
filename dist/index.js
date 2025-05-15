@@ -17,10 +17,7 @@ define("@scom/page-breadcrumb/model/index.ts", ["require", "exports"], function 
             this._data = {
                 data: []
             };
-            this._tag = {
-                light: {},
-                dark: {}
-            };
+            this._tag = {};
             this._options = options;
         }
         get data() {
@@ -28,12 +25,15 @@ define("@scom/page-breadcrumb/model/index.ts", ["require", "exports"], function 
         }
         set data(value) {
             this._data.data = value || [];
+            this._options?.onUpdateBlock();
         }
         get tag() {
             return this._tag;
         }
         set tag(value) {
             this._tag = value;
+            this._options?.onUpdateTheme();
+            this._options?.onUpdateBlock();
         }
         getData() {
             return this._data;
@@ -123,6 +123,12 @@ define("@scom/page-breadcrumb", ["require", "exports", "@ijstech/components", "@
         constructor(parent, options) {
             super(parent, options);
         }
+        get data() {
+            return this.model.data;
+        }
+        set data(value) {
+            this.model.data = value;
+        }
         async setData(data) {
             this.model.setData(data);
         }
@@ -136,9 +142,6 @@ define("@scom/page-breadcrumb", ["require", "exports", "@ijstech/components", "@
             value ? this.style.setProperty(name, value) : this.style.removeProperty(name);
         }
         onUpdateTheme() {
-            // const themeVar = document.body.style.getPropertyValue('--theme') || 'dark';
-            this.updateStyle('--text-primary', this.model.tag?.font?.color);
-            this.updateStyle('--colors-primary-main', this.model.tag?.activeColor);
             this.updateStyle('--typography-font_size', this.model.tag?.font?.size);
             this.breadcrumb.tag = { ...this.model.tag };
         }
@@ -180,25 +183,21 @@ define("@scom/page-breadcrumb", ["require", "exports", "@ijstech/components", "@
             className: 'ScomPageBreadcrumb',
             events: {},
             dataSchema: {
-                "type": "object",
-                "properties": {
-                    "data": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "caption": {
-                                    "type": "string"
-                                },
-                                "data": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "caption"
-                            ]
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "caption": {
+                            "type": "string"
+                        },
+                        "data": {
+                            "type": "string",
+                            required: false
                         }
-                    }
+                    },
+                    "required": [
+                        "caption"
+                    ]
                 }
             }
         })

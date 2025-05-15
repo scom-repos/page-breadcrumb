@@ -5,13 +5,9 @@ declare module "@scom/page-breadcrumb/interface.ts" {
         data: IBreadcrumbItem[];
     }
     export interface ISettings {
-        light?: IColors;
-        dark?: IColors;
         gap?: string | number;
         font?: IFont;
         activeColor?: string;
-    }
-    export interface IColors {
     }
 }
 /// <amd-module name="@scom/page-breadcrumb/model/index.ts" />
@@ -81,6 +77,8 @@ declare module "@scom/page-breadcrumb" {
         private model;
         static create(options?: ScomPageBreadcrumbElement, parent?: Container): Promise<ScomPageBreadcrumb>;
         constructor(parent?: Container, options?: ScomPageBreadcrumbElement);
+        get data(): IBreadcrumbItem[];
+        set data(value: IBreadcrumbItem[]);
         private setData;
         getConfigurators(): ({
             name: string;
