@@ -5,12 +5,7 @@ export interface IConfig {
 }
 
 export interface ISettings {
-  light?: IColors;
-  dark?: IColors;
   gap?: string|number;
   font?: IFont;
   activeColor?: string;
-}
-
-export interface IColors {
 }

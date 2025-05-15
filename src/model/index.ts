@@ -10,10 +10,7 @@ export class Model {
   private _data: IConfig = {
     data: []
   };
-  private _tag: ISettings = {
-    light: {},
-    dark: {}
-  };
+  private _tag: ISettings = {};
   private _options: IOptions;
 
   constructor(options: IOptions) {
@@ -26,6 +23,7 @@ export class Model {
 
   set data(value: IBreadcrumbItem[]) {
     this._data.data = value || [];
+    this._options?.onUpdateBlock()
   }
 
   get tag() {
@@ -34,6 +32,9 @@ export class Model {
 
   set tag(value: ISettings) {
     this._tag = value;
+
+    this._options?.onUpdateTheme();
+    this._options?.onUpdateBlock();
   }
 
   private getData() {

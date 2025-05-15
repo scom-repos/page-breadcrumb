@@ -35,25 +35,21 @@ declare global {
   className: 'ScomPageBreadcrumb',
   events: {},
   dataSchema: {
-    "type": "object",
-    "properties": {
-      "data": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "caption": {
-              "type": "string"
-            },
-            "data": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "caption"
-          ]
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "caption": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string",
+          required: false
         }
-      }
+      },
+      "required": [
+        "caption"
+      ]
     }
   }
 })
@@ -70,6 +66,14 @@ export default class ScomPageBreadcrumb extends Module {
 
   constructor(parent?: Container, options?: ScomPageBreadcrumbElement) {
     super(parent, options);
+  }
+
+  get data() {
+    return this.model.data;
+  }
+
+  set data(value: IBreadcrumbItem[]) {
+    this.model.data = value;
   }
 
   private async setData(data: IConfig) {
@@ -89,9 +93,6 @@ export default class ScomPageBreadcrumb extends Module {
   }
 
   private onUpdateTheme() {
-    // const themeVar = document.body.style.getPropertyValue('--theme') || 'dark';
-    this.updateStyle('--text-primary', this.model.tag?.font?.color);
-    this.updateStyle('--colors-primary-main', this.model.tag?.activeColor);
     this.updateStyle('--typography-font_size', this.model.tag?.font?.size);
     this.breadcrumb.tag = {...this.model.tag};
   }
